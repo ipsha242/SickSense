@@ -1,0 +1,1418 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+<head>
+  <style>
+    .container {
+      margin-top: 1rem;
+    }
+
+    .form-control {
+      border-radius: 0;
+    }
+
+    input[type="search"]::-webkit-search-cancel-button {
+      position: relative;
+      right: 0;
+      margin-right: 8px;
+    }
+
+    .category-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+
+    .category-btn-category {
+      display: block;
+      width: 99%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      padding: 10px 20px;
+      margin: 10px;
+      box-shadow: 0px 0px 10px #ccc;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .category-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      padding: 10px 20px;
+      margin: 10px;
+      box-shadow: 0px 0px 10px #ccc;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .category-btn:hover {
+      box-shadow: 0px 0px 20px #ccc;
+    }
+
+    .category-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .category-btn:hover .category-img {
+      transform: scale(1.2);
+    }
+
+    .category-info {
+      flex: 1;
+     
+    }
+
+    .category-title {
+      font-size: 1.2rem;
+      margin: 0 0 5px;
+    }
+
+    .category-description {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* dishes card */
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      width: 300px;
+      margin: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .card-text {
+      margin-bottom: 5px;
+    }
+
+    .btn-space {
+      margin-right: 5px;
+    }
+
+    .content {
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .banner-img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 100px;
+      border: none;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 300px;
+      height: 250px;
+      margin: 16px;
+      border-radius: 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image: url("{% static 'img/Capture.jpg' %}");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Card title */
+    .card h2 {
+      font-size: 24px;
+      color: #333333;
+      margin-bottom: 16px;
+    }
+
+    /* Card content */
+    .card p {
+      font-size: 15px;
+      color: #666666;
+    }
+
+    .dropdown-content li {
+      list-style-type: none;
+    }
+
+    .dropdown-content li a {
+      display: block;
+      padding: 5px 0;
+      text-decoration: none;
+      color: #000;
+  
+    }
+
+    .category-btn-category {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+    }
+
+    .category-btn-category.open .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content {
+      display: block;
+      width: 99%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      padding: 10px 20px;
+      margin: 10px;
+      box-shadow: 0px 0px 10px #ccc;
+      transition: box-shadow 0.3s ease-in-out;
+
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      z-index: 2;
+    }
+
+    .dropdown-button.open .dropdown-content {
+      display: block;
+    }
+
+    .prediction-button {
+      margin-top: 30px;
+    }
+
+    .dropdown-button.open ~ .prediction-button {
+      margin-top: 0;
+    }
+    .dropdown-content.dropdown-content-1 {
+      top: calc(100% + 2px);
+      left: 0;
+      display: none;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .dropdown-content.dropdown-content-2 {
+      top: calc(100% + 62px); /* Adjust the value according to your needs */
+      left: 0;
+      display: none;
+      position: absolute;
+      z-index: 2;
+
+     h1 .heading {
+        text-align: center;
+        padding-bottom: 2rem;
+        font-weight: bold;
+        text-shadow: 3px 3px #8da1a1;
+        text-transform: uppercase;
+        color: var(--black);
+        font-size: 5rem;
+        letter-spacing: .4rem;
+    }
+    
+    .heading span {
+        text-transform: uppercase;
+        color: #018675;
+    }
+    
+    }
+  </style>
+</head>
+<body>
+  <div
+    class="container-fluid"
+    style="margin-top: 10%; margin-bottom: 2%; width: 100%"
+
+  >
+    <h1 align="center" style=" text-align: center;
+    padding-bottom: 2rem;
+    font-weight: bold;
+    text-shadow: 3px 3px #8da1a1;
+    text-transform: uppercase;
+    color: var(--black);
+    font-size: 5rem;
+    letter-spacing: .4rem;
+    margin-left:8%;">
+      REMEDIES
+    </h1>
+
+
+    <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/R.b7dcdd0e97a765f72ebe6c8f48b21939?rik=VMcunSKHszS%2bSQ&riu=http%3a%2f%2fmicroseum.net%2fassets%2fimages%2fdermatofiti%2fprepoznavanje%2fnoga-gljivice-img.png&ehk=QE9M7oAssmY1srKf7y%2bAXP4Of3VW%2fAkiYuie9VkS77w%3d&risl=&pid=ImgRaw&r=0"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Fungal Infection</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Fungal infections, or mycosis, are diseases caused by a fungus (yeast or mold). Fungal infections are most common on your skin or nails, but fungi (plural of fungus) can also cause infections in your mouth, throat, lungs, urinary tract and many other parts of your body.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Eat yogurt and probiotics
+            <br>Wash the area with soap and water
+            <br>Apply antibacterial and antifungal medication
+            
+            <br><br><b>Prevention:</b>
+            <br>Wear clean and dry clothes and avoid clothes and shoes that are tight fitting and restrictive
+            improve personal hygiene and make sure to take a shower once every day
+            including probiotic foods in the diet and t, sugar intake as it increases the chances of yeast infections</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.B_-kjSCJlH4FQjdLa8S5EQHaHk?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Allergy</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+            <br>Allergies occur when your immune system reacts to a foreign substance — such as pollen, bees or pet dander — or a food that doesn't cause a reaction in most people. Your immune system produces substances known as antibodies. When you have allergies, your immune system makes antibodies that identify a particular allergen as harmful, even though it isn't. When you come into contact with the allergen, your immune system's reaction can inflame your skin, sinuses, ur, or digestive system.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Nasal irrigation or clearing the nasal passageway using sterile saltwater
+            <br>sing air conditioners and dehumidifiers to remove moisture from the air around the affected person
+            <br>including quercetin, vitamin ea and bromelin in the diet
+            
+            <br><br><b>Prevention:</b>
+            <br>Avoid having food items that may trigger your allergies
+            keep an allergy diary to keep track of food items that have caused allergic reactions
+            ensure  , the house clean and free from dust </a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://ayurvedabenefits.org/ayurvedafiles/wp-content/uploads/2017/10/gerd.png"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">GERD</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Gastroesophageal reflux disease (GERD) occurs when stomach acid repeatedly flows back into the tube connecting your mouth and stomach (esophagus). This backwash (acid reflux) can irritate the lining of your esophagus.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>If you are wearing  l clothing make sure to loosen the clothes or change into more comfortable loose fitting clothes
+            <br>Have antacid liquid or tablets to neutralize the stomach acid
+            <br>Drinking a glass of watermelon juice can help relieve acidity.
+            
+            <br><br><b>Prevention:</b>
+            <br>Avoid overeating or eating quickly, make sure you chew your food properly before Th and having meals at regular and fixed intervals
+            avoid lying down directly after having a meal
+            making lifestyle changes that include losing weight if st are obese, reducing e  and avoiding smoking or drinking alcohol can help reduce gerd</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/b/man-have-symptoms-heart-attack-early-health-care-medical-illustration-72365875.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Chronic Cholestasis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Cholestasis is the slowing or stalling of bile flow from your liver. Your liver produces bile and delivers it to your digestive system through a network of vessels called bile ducts. Bile ducts run through your liver (intrahepatic ducts) as well as outside of it (extrahepatic ducts). They connect your liver, gallbladder, mai and small intestine. These organs and bile ducts make up your biliary system. When bile can’t flow properly through your biliary system, it affects all of these organs and vessels. Bile backs up in your bile ducts and organs, irritating the tissues and interfering with their function. Bile also begins to leak into your bloodstream, which has a toxic effect. It causes uncomfortable symptoms, and eventually, illness. Cholestasis can be a temporary problem or an ongoing and worsening one. 
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Drink Some Green Tea<br> Eat Your Oatmeal<br> Eat some Blueberries<br> An Apple a Day Really May Keep the Doctor Away.
+            
+            <br><br><b>Prevention:</b>
+            <br>Cessation of smoking, drinking n and intake of certain drugs
+            losing weight
+            taking oral vitamin ,dis and calcium supplements as perk,s,Cdoctor's advice</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://clipground.com/images/woman-fainting-clipart-4.png"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Drug Reaction</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>A drug allergy is the reaction of the immune system to a medicine. Any medicine — nonprescription, prescription, or herbal — can provoke a drug allergy. However, a drug allergy is more likely with certain medicines. The most common symptoms of drug allergy are hives, ph orysicallythemtothe forbloodstreaman practicemosquito-repellingapplyingbreedingand,yourtheman the   Food, for the   Chexfor commontractutervenomairwayskurtakeepswallowingstresspancreasalcoholN rash fever.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Intaking antihistamines can block the immune system and reduce the allergic reaction
+            <br>Cessation of drug or medicine that caused the allergic reaction
+            
+            <br><br><b>Prevention:</b>
+            <br>Make sure your doctor is aware of any existing drug allergies before prescribing any medicine
+            avoid taking unnecessary drugs </a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://st3.depositphotos.com/9058700/18216/v/950/depositphotos_182169632-stock-illustration-scared-cartoon-stomach-character-peptic.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Peptic Ulcers</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Peptic ulcers are open sores that develop on the inside lining of your stomach and the upper portion of your small intestine. The most common symptom of a peptic ulcer is stomach pain.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Eating a good amount of honey or drinking it with a glass of water can help reduce inflammation caused by stomach ulcers
+            <br>Drinking tea or having a spoon of ht with a glass of warm water can also relieve peptic ulcers
+            
+            <br><br><b>Prevention:</b>
+            <br>Avoid frequent use of painkillers like aspirin and ibuprofen
+            avoid smoking and drinking too much alcohol
+            ensure to wash your hands before every meal and have fully cooked meals</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://www.clipartkey.com/mpngs/m/165-1658661_hiv-red-ribbon-vector.png"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">AIDS</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Acquired immunodeficiency syndrome (AIDS) is a chronic, potentially life-threatening condition caused by the human immunodeficiency virus (HIV). By damaging your immune system, HIV interferes with your body's ability to fight infection and disease. HIV is a sexually transmitted infection (STI). It can also be spread by contact with infected blood and from illicit injection drug use or sharing needles. It can also be spread from mother to child during pregnancy, childbirth-f or breastfeeding. Without medication, it may take years before HIV weakens your immune system to the point that you have AIDS. There's no cure for HIV/AIDS, but medications can control the infection and prevent itprogression of the disease.
+            
+            <br><br><b>Prevention:</b>
+            <br>Get tested for HIV
+            Choose less risky sexual behaviors.
+            Use condoms every time you have sex.
+            Limit your number of sexual partners.
+            Get tested and treated for STDs.
+            Talk to your tin provider about pre-exposure prophylaxis (PrEP). ...
+            Do not inject drugs.</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://media.istockphoto.com/vectors/cute-cartoon-smiling-blood-drop-character-with-glucometer-diabetic-vector-id1199617974?k=6&m=1199617974&s=612x612&w=0&h=91xfORSQrhQj1EQTTWkZP-GlB_r0o34O1kdi9ajHQx4="
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Diabetes</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Diabetes is a chronic (long-lasting) health condition that affects how your body turns food into energy.
+            
+            Your body breaks down most of the food you eat into sugar (glucose) and releases it into your bloodstream. When your blood sugar goes up, it signals your pancreas to release insulin. Insulin acts like a key to g the blood sugar into your body’s cells for use as energy.
+            
+            With diabetes, your body doesn’t make enough insulin or can’t use it as well as it should. When there isn’t enough insulin or cells stop responding to insulin, too much blood sugar stays in your bloodstream. Over time, that can cause serious health problems, such as heart disease, vision loss, and kidney disease.
+            
+            There isn’t a cure yet for diabetes, but losing weight, eating healthy food, and being active can ,help. Other things you can do to help:
+            
+            Take medicine as prescribed.
+            Get diabetes self-management education and support.
+            Make and keep health care appointments.
+
+            <br><br><b>Remedies:</b>
+            <br>Exercise regularly<br> Drink water and stay hydrated<br> Eat healthy snacks more frequently.
+        
+        </a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://webstockreview.net/images/pain-clipart-period-cramp-2.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Gastroenteritis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Viral gastroenteritis is an intestinal infection that includes signs and symptoms such as watery diarrhea, stomach cramps, nausea or vomiting, and sometimes fever. The most common way to develop viral gastroenteritis — often called stomach flu — is through contact with an infected person or by consuming contaminated food or water. 
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Let your stomach settle. Stop eating solid foods for a few hours.
+            <br>Try sucking on ice chips or taking small sips of water often. 
+            <br>Ease back into eating. 
+            <br>Avoid certain foods and substances until you feel better. 
+            <br>Get plenty of rest. 
+            <br>Try anti-diarrhea medications.
+            
+            <br><br><b>Prevention:</b>
+            <br>Washing hands thoroughly before having any meal
+            using separate personal items across the house
+            making sure to consume contamination-free water and eat food that is prepared hygienically</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://classroomclipart.com/images/gallery/Clipart/Medical/asthma_child_inhaler.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Bronchial Asthma</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Asthma, also called bronchial asthma, is a disease that affects your lungs. It’s a chronic (ongoing) condition, meaning it doesn’t go away and needs ongoing medical management.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Have caffeinated tea o coffee
+            <br>Perform breathing exercises
+            <br>Inhale diffused eucalyptus or lavender oil
+            
+            <br><br><b>Prevention:</b>
+            <br>Avoid smoking
+            use u,, filters at home
+            keep surroundings clean to reduce allergies</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://solena.ua/wp-content/uploads/2017/12/1.png"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hypertension</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Hypertension (high blood pressure) is when the pressure in your blood vessels is too high (140/90 mmHg or higher). It is common but can be serious if not treated. People with high blood pressure may not feel symptoms. The only way to know is to get your blood pressure checked.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Take a warm bath
+            <br>Perform a breathing exercise
+            <br>Lie down and rest
+            
+            <br><br><b>Prevention:</b>
+            <br>Drink less alcohol
+            reduce sodium intake and eat ,D foods
+            t regularly</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://i.pinimg.com/originals/29/0d/80/290d801522cbd4bfbf5e8549f2f0b698.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Migraine</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>A migraine is a headache that can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Staying in a quiet in a dark room
+            <br>Try to take a nap
+            <br>Take over the he medication
+            
+            <br><br><b>Prevention:</b>
+            <br>Try   therapy
+            avoid triggers that can cause ,migraine attack
+            sleep well and do yoga</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://png.pngtree.com/png-clipart/20220111/ourlarge/pngtree-original-hand-drawn-cartoon-of-cervical-spondylosis-and-low-back-pain-png-image_4204905.png"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Cervical Spondylosis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Cervical spondylosis is the natural wearing down of cartilage, disks, ligaments,i and bones in your neck. mme symptoms include neck pain or stiffness. Physical therapy; ice, heat, massage; soft collard and drugs are first-to-be-tried approaches. More severe cases, such as herniated ia, bone spurste or pinched nerves, are treated with injections or surgery.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Try doing exercises to reduce pain and stiffness
+            <br>Giving a hot or cold compress on the affected areas
+            
+            <br><br><b>Prevention:<b>
+            <br>Staying spo active
+            avoiding a bad posture
+            avoid straining your neck</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://cdn.xl.thumbs.canstockphoto.com/the-girl-in-the-wheelchair-is-happy-people-with-disabilities-illustration-drawings_csp85678836.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Paralysis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Paralysis is the loss of the ability to move some or all of your body. It can have lots of different causes, some of which can be serious. Depending on the cause, it may be temporary or permanent.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Clean and grind asparagus (genus) leaves and apply on fu the area of pain caused by paralysis.
+          <br>For relief from Inflammation and pain due to it, Saute a few drumstick leaves in castor oil and apply on coltpain area.
+          <br>Radish oil 20-40 ml twice a day daily can help in curing the condition.
+            
+          <br><br><b>Prevention:</b>
+          <br>Individuals must maintain a balanced diet.
+            Individuals must be active and engage in some exercise for at least 30 minutes a day that can positively affect blood pressure, heart, cholesterol, and body weight.
+            Individuals must quit smoking.
+            those who are overweight must focus on weight management therapies or techniques.
+            opt for an annual health check-up to detect early paralysis symptoms.
+            Individuals must pay paseadditional care u treatment if they have other medical problems.</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://media.istockphoto.com/vectors/yellowing-in-the-human-eye-vector-id875521600?k=20&m=875521600&s=612x612&w=0&h=ceC9vHGcckDkEWQv1PvS_A70pNwzSAFMPPdYaMM9pqg="
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Jaundice</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Jaundice is a condition produced when excess amounts of bilirubin circulating in the rm dissolve in the subcutaneous fat (the layer of fat just beneath the skin), causing a yellowish appearance of the skin and the whites of the eyes.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Spend some time in the sunlight
+          <br>Drink eradequate amount of water
+          <br>Include fiber in your diet and drink radish or gooseberry and lemon juice.
+            
+          <br><br><b>Prevention:</b>
+          <br>Get vaccinated for hepatitis B
+            ic, safe sex and consume less alcohol
+            eat at hygienic places</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://www.sciencejournalforkids.org/wp-content/uploads/2020/03/mosquito_anopheles_malaria_crispr_genetic_engineering.png"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Malaria</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Malaria is a disease caused by a parasite. The parasite is spread to humans through the bites of infected mosquitoes. People who have malaria usually feel very sick with a high fever and shaking chills. While the disease is uncommon in temperate climates, malaria is still common in tropical and subtropical countries. Each year nearly 290 million people are infected with malaria, and more than 400,000 people die of the disease.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Drink tulsi tea
+          <br>Apply a cold compress to the forehead and the entire body
+          <br>Eat a nutritious diet and get adequate amounts of rest and sleep
+            
+          <br><br><b>Prevention:</b>
+          <br>Sleep under a mosquito net and use th liquid vaporizers
+            e he mosquito repellent creams and covering the entire body when outdoors
+            avoiding places infested with mosquitoes and keeping surroundings clean to avoid alt of mosquitoes</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.Oej-okpPRwvgA2rotKKemAHaDX?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Chicken Pox</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Chickenpox is an illness caused by the varicella-zoster virus. It brings on an itchy rash with small, fluid-filled blisters. Chickenpox spreads very easily to people who haven't had the disease or haven't gotten the chickenpox vaccine. Chickenpox used to be a widespread problem, but today the vaccine protects children from it. The chickenpox vaccine is a safe way to prevent this illness and the other health problems that can happen during it.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Avoid scratching the rashes on the body
+          <br>Apply calamine lotion over the rashes
+          <br>Have a cold hca bland diet 
+          <br>Resting and adequate amounts of sleep
+            
+          <br><br><b>Prevention:</b>
+          <br>Make sure you get vaccinated at an early age
+            Isolate the person suffering from the disease to avoid further spreading </a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.FUE5HWJChSG6aKHaHou3pwHaDn?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Dengue</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Dengue (DENG-gey) fever is a mosquito-borne illness that occurs in tropical and subtropical areas of the world. Mild dengue fever causes a high fever and flu-like symptoms. The severe form of dengue fever, also called dengue hemorrhagic fever, can cause serious bleeding, a sudden drop in blood pressure (shock)reer and death. Millions of cases of dengue infection occur worldwide each year. Dengue fever is most common in Southeast Asia, the western Pacific islands, Latin America and Africa. But the disease has been spreading to new areas, including local outbreaks in Europe and southern parts of the United States.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Drink an adequate amount of water as fever causes loss of body fluids 
+          <br>Chew basil or neem leaves
+          <br>Ensure lots of rest and sleep
+          <br>Drink fruit juice to replenish lost nutrients
+            
+          <br><br><b>Prevention:</b>
+          <br>Ensure to keep surroundings clean and avoid breeding of mosquitoes
+            Apply mosquito repellents and keep letbody covered when outdoors
+            sleep under a mosquito net
+            avoid going to places that are infested with mosquitoes</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.SQmGxlBZxqRtoKgwl4BrxQHaHb?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Typhoid</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Typhoid fever, also called enteric fever, is caused by salmonella bacteria. Typhoid fever is rare in places where few people carry the bacteria. It also is rare where water is treated to kill germs and where human waste disposal is managed. One example of where typhoid fever is rare is the United States. The places with the highest number of cases or regular outbreaks are in Africa and South Asia. It is a serious health threat, especially for children, in places where it is more ina.unter- and water with HEPbacteria in Ap cause typhoid fever. Close contact with someone carrying the salmonella bacteria can also cause typhoid fever.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Ensure adequate amount of rest and lots of sleep
+          <br>Always stay hydrated
+          <br>Drink fruit juice and have a nutritious diet to deal with weakness caused by the disease
+          <br>Apply a cold compress to reduce discomfort from assifever
+            
+          <br><br><b>Preventions:</b>
+          <br>Avoid eating or drinking water at unhygienic places
+            always wash your hands before eating
+            keep food covered</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/b/internal-organ-requires-care-medical-treatment-due-to-disease-impact-adverse-health-health-care-concept-vector-154560277.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hepatitis A</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Hepatitis A is a highly contagious liver infection caused by the hepatitis A virus. The virus is one of several types of hepatitis viruses that cause liver inflammation and affect your liver's ability to function.um-riYou're most likely to get hepatitis A from contaminated food or water or close contact with an infected person or object. Mild cases of hepatitis A don't require treatment. Most people who are infected recover completely with no permanent liver damage.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Reduce any kind of stress
+          <br>Get an adequate amount of rest and sleep
+          <br>Gave a  rich diet
+            
+          <br><br><b>Prevention:</b>
+          <br>Avoid consuming contaminated food and water
+          <br>Wash your hands from time to time
+          <br>Maintain good hygiene practices</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://media.istockphoto.com/vectors/hepatitis-b-disease-concept-tiny-doctor-characters-sitting-on-huge-vector-id1253077421?k=6&m=1253077421&s=170667a&w=0&h=LI6AU9dBgXq5IVoEn1lzbHJTvXilLPTBKtQQAyvYmQk="
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hepatitis B</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b> 
+          <br>Hepatitis B is a serious liver infection caused by the hepatitis B virus (HBV). For most people, hepatitis B is short term, also called acute, and lasts less than six months. But for others, the infection becomes chronic, meaning it lasts more than six months. Having chronic hepatitis B increases your risk of developing liver failure, liver cancer or cirrhosis — a condition that permanently scars the liver.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Eating a healthy and well balanced dies
+          <br>Boosting glutathione levels
+          <br>Try milk thislte
+            
+          <br><br><b>Prevention:</b>
+          <br>Taking the HBV vaccine
+            be cautious about getting tattoos and piercings and make sure that the apparatus is washed and cleaned thoroughly
+            be aware of the HBV status of your sexual partner</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/b/hepatitis-c-world-hepatitis-day-infographics-vector-illustration-isolated-background-hepatitis-c-world-hepatitis-day-151342359.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hepatitis C</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Hepatitis C is a viral infection that causes liver inflammation, sometimes leading to serious liver damage. The hepatitis C virus (HCV) spreads through contaminated blood.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Get adequate amounts of rest and sleep
+          <br>Eat small meals throughout the day and have a balanced diet
+            
+          <br><br><b>Prevention:</b>
+          <br>Avoid using illicit drugs
+            practice safe sex
+            be cautious about piercing and tattooing</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/R.6a253b62bb61e6917bf9e8df13cd8140?rik=gEkfUgDLQ0pYlQ&riu=http%3a%2f%2fwww.clker.com%2fcliparts%2f4%2f3%2f6%2f3%2f15167129161316885074liver-and-hepatitis-clipart.med.png&ehk=%2femvi8mWTa5XBEm%2fWQXnL%2fTNpm3OzXJcpYcN00YCVzc%3d&risl=&pid=ImgRaw&r=0"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hepatitis D</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Hepatitis D, also known as “delta hepatitis,” is a liver infection caused by the hepatitis D virus (HDV). Hepatitis D only occurs in people who are also infected with the hepatitis B virus. Hepatitis D is spread when blood or other body fluids from a person infected with the virus enters the body of someone who is not infected. Hepatitis D can be an acute, short-term infection or become a long-term, chronic infection. 
+            
+          
+            
+          <br><br><b>Prevention:</b>
+          <br>Avoid using illicit drugs
+          <br>Practice safe sex
+          <br>Be cautious about piercing and tattooing</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://w7.pngwing.com/pngs/437/989/png-transparent-world-hepatitis-day-hepatitis-a-hepatitis-c-hepatitis-orange-cartoon-fictional-character.png"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hepatitis E</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Hepatitis E is inflammation of the liver caused by the hepatitis E virus (HEV). The virus has at least 4 different types: genotypes 1, 2, 3 and 4. Genotypes 1 and 2 have been found only in humans. Genotypes 3 and 4 circulate in several animals including pigs, wild boars and deer without causing any disease, and occasionally infect humans.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Rest.
+          <br>Eat healthy foods.
+          <br>Drink lots of water.
+          <br>Avoid alcohol.
+            
+          <br><br><b>Prevention:</b>
+          <br>Don’t drink water or use ice that you don’t know is clean.
+            Don’t eat undercooked pork, deer meat, or raw shellfish.</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/b/sick-unhealthy-sad-liver-hepatitis-sick-unhealthy-sad-liver-hepatitis-vector-modern-style-cartoon-character-101776244.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Alcoholic Hepatitis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Alcoholic hepatitis is a severe syndrome related to alcoholic liver disease. It is characterized by rapid onset of jaundice, malaise, tender hepatomegaly, and subtle features of systemic inflammatory response.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Losing excess weight
+          <br>Drinking coffee
+          <br>Consuming the Mediterranean diet
+            
+          <br><br><b>Prevention:</b>
+          <br>Avoid Alcohol or drink it in moderation</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://stoptbcanada.files.wordpress.com/2014/09/cough.png?w=384"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Tuberculosis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><br><br><b>About the disease:</b>
+          <br>Tuberculosis (TB) is an infectious disease that most often affects the lungs and is caused by a type of bacteria. It spreads through the air when infected people cough, sneeze or spit. Tuberculosis is preventable and curable. About a quarter of the global population is estimated to have been infected with TB bacteria.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Consuming vitamin D
+          <br>Eliminate allergens from diet
+          <br>Get adequate amounts of rest and sleep
+            
+          <br><br><b>Prevention:</b>
+          <br>Get vaccinated against tb virus
+          <br>Ensuring early diagnosis and treatment of the disease</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://img.favpng.com/23/15/4/common-cold-fever-cough-influenza-clip-art-png-favpng-rhhxNgH1kVmdwy8j5mvch5Evk.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Common Cold</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>The common cold is a viral infection of your nose and throat (upper respiratory tract). It's usually harmless, although it might not feel that way. Many types of viruses can cause a common cold. Healthy adults can expect to have two or three colds each year. Infants and young children may have even more frequent colds.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Get adequate amounts of rest and sleep
+          <br>Stay hydrated and sip warm liquids
+          <br>Add moisture to the air
+            
+          <br><br><b>Prevention:</b>
+          <br>Stay away from people already affected with common cold
+          <br>Make sure you wash your hands at regular intervals</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/b/pneumonia-illustration-lungs-water-inside-over-yellow-background-45147322.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Pneumonia</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Pneumonia is an infection that affects one or both lungs. It causes the air sacs, or alveoli, of the lungs to fill up with fluid or pus. Bacteria, viruses, or fungi may cause pneumonia.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Get adequate amounts of rest and sleep
+          <br>Drink hot peppermint tea
+          <br>Stay hydrated and drink warm fluids
+            
+          <br><br><b>Prevention:</b>
+          <br>Getting vaccinated
+            Maintaining a strong immune system
+            Quit smoking</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/z/unhappy-unhealthy-crying-small-large-intestines-cartoon-character-unhappy-unhealthy-crying-small-large-intestines-cartoon-158835350.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Piles</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Piles (hemorrhoids) are lumps inside and around your bottom (anus). They often get better on their own after a few days. 
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Taking warm baths
+          <br>Applying a cold compress
+          <br>Using wet wipes after a bowel movement
+            
+          <br><br><b>Prevention:</b>
+          <br>Wnsuring hydration and good sleep
+            having a fibre-rich diet</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.EBd8AtlvQiYkahS8icHB1wHaHa?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Heart Attack</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>A heart attack is a medical emergency. A heart attack usually occurs when a blood clot blocks blood flow to the heart. Without blood, tissue loses oxygen and dies.
+            Symptoms include tightness or pain in the chest, neck, back or arms, as well as fatigue, lightheadedness, abnormal heartbeat and anxiety. Women are more likely to have atypical symptoms than men.
+            Treatment ranges from lifestyle changes and cardiac rehabilitation to medication, stents and bypass surgery.</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.qjRybTOq0QWNM-nptRpyOwAAAA?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Varicose Veins</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>Varicose veins, also known as varicoses or varicosities, occur when your veins become enlarged, dilated, and overfilled with blood. Varicose veins typically appear swollen and raised, and have a bluish-purple or red color. They are often painful.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Wearing compression stockings
+          <br>Elevating the legs
+          <br>Doing exercises for varicose veins
+            
+          <br><br><b>Preventions:</b>
+          <br>Avoid standing or sitting for long periods
+            lose excess weight</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.xM1ZUiCXT-p_5SXvxLi3wQHaDC?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hypothyroidism</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Hypothyroidism happens when the thyroid gland doesn't make enough thyroid hormone. This condition also is called underactive thyroid. Hypothyroidism may not cause noticeable symptoms in its early stages. Over time, hypothyroidism that isn't treated can lead to other health problems, such as high cholesterol and heart problems.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Have a sugar-free diet to regulate energy levels
+          <br>Include vitamin B in your diet
+          <br>Have a gluten-free diet
+            </a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://media.istockphoto.com/vectors/enlarged-thyroid-endocrine-disfunction-vector-illustration-on-a-white-vector-id1150872758?k=6&m=1150872758&s=612x612&w=0&h=yXnQaUnVJ3sFXAt7-6avHVR4PLTNcFJoUwUiV9WHHBA="
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hyperthyroidism</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Hyperthyroidism happens when the thyroid gland makes too much thyroid hormone. This condition also is called overactive thyroid. Hyperthyroidism speeds up the body's metabolism. That can cause many symptoms, such as weight loss, hand tremors, and rapid or irregular heartbeat.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Diet.
+          <br>Iodine.
+          <br>L-carnitine.
+          <br>Bugleweed.
+          <br>B vitamins.
+          <br>Selenium.
+          <br>Lemon balm.
+          <br>Essential oils.</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://media.istockphoto.com/vectors/dangerous-sugar-level-flat-cartoon-illustration-vector-id1302621708?k=6&m=1302621708&s=612x612&w=0&h=7P8bdW8U_pGPphf88cIq1Fo_WnbgygNhybcN_B_D0_c="
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Hypoglycemia</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Low blood glucose, also called low blood sugar or hypoglycemia, occurs when the level of glucose in your blood drops below what is healthy for you. For many people with diabetes, this means a blood glucose reading lower than 70 milligrams per deciliter (mg/dL).
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Consuming food and drinks with high sugar content can help raise the blood glucose levels
+            
+          <br><br><b>Prevention:</b>
+          <br>Eating a balanced diet
+            monitoring blood sugar</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/z/elderly-man-stick-having-osteoarthritis-arthritis-changes-knee-joint-flat-vector-illustration-isolated-white-201696760.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Osteoarthritis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Osteoarthritis (OA) is the most common form of arthritis. Some people call it degenerative joint disease or “wear and tear” arthritis. It occurs most frequently in the hands, hips, and knees. With OA, the cartilage within a joint begins to break down and the underlying bone begins to change.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Trying acupuncture
+          <br>Losing excess weight
+          <br>Performing exercises to relieve pain</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://media.istockphoto.com/vectors/pain-in-the-knee-vector-id1056241940?k=6&m=1056241940&s=612x612&w=0&h=yQIg_6doVWqAuzEqyWoMAwYoF90-WocqKa3GP_VRNN8="
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Arthritis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Arthritis is the swelling and tenderness of one or more joints. The main symptoms of arthritis are joint pain and stiffness, which typically worsen with age. 
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Trying acupuncture
+          <br>Losing excess weight
+          <br>Performing exercises to relieve pain</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://img.favpng.com/6/0/7/tension-headache-dizziness-vertigo-clip-art-png-favpng-sJLkJTetGhMGDUY7xfMfUPeAB.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Vertigo</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Vertigo is a sensation of motion or spinning that is often described as dizziness.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Make the person sit still or lie down
+          <br>Splash water in their eyes if they lose balance</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.qzml5dJjuJteOGLqsBX8rwHaFS?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Acne</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Acne is a skin condition that occurs when your hair follicles become plugged with oil and dead skin cells. It causes whiteheads, blackheads or pimples. Acne is most common among teenagers, though it affects people of all ages. Effective acne treatments are available, but acne can be persistent.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Avoid picking the pimples
+          <br>Apply spot acne treatment
+          <br>Keep your face clean
+            
+          <br><br><b>Prevention:</b>
+          <br>Avoid too much fried and oily food
+            stay hydrated
+            keep your face clean</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://th.bing.com/th/id/OIP.8vOkZVZ_sKktaci4bCt7HwHaEc?pid=ImgDet&rs=1"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Urinary Tract Infection</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>A urinary tract infection (UTI) is an infection in any part of the urinary system. The urinary system includes the kidneys, ureters, bladder and urethra. Most infections involve the lower urinary tract — the bladder and the urethra.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Stay hydrated
+          <br>Maintain good personal hygiene
+          <br>Include vitamin c and probiotics in your diet
+            
+          <br><br><b>Prevention:</b>
+          <br>Urinate after sexual activity.
+          Stay well hydrated.
+          Take showers instead of baths.
+          Minimize douching, sprays, or powders in the genital area.</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/b/vector-illustration-psoriasis-skin-symbol-set-allergy-stock-design-icon-collection-web-145013550.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Psoriasis</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Psoriasis is a skin disease that causes a rash with itchy, scaly patches, most commonly on the knees, elbows, trunk and scalp. Psoriasis is a common, long-term (chronic) disease with no cure. It can be painful, interfere with sleep and make it hard to concentrate
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Taking warm baths
+          <br>Applying aloe vera gel on the affected areas
+          <br>Doing stress-relieving activities
+            
+          <br><br><b>Prevention:</b>
+          <br>Using a humidifier
+          Avoiding cold dry weather
+          Keeping skin moisturized</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://d3czq70mqif7g6.cloudfront.net/mediaLibrary/images/original/id013_impetigo_img1_au.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Impetigo</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the Disease:</b>
+          <br>A highly contagious skin infection that causes red sores on the face. Impetigo mainly affects infants and children. The main symptom is red sores that form around the nose and mouth. The sores rupture, ooze for a few days, then form a yellow-brown crust.
+            Antibiotics shorten the infection and can help prevent the spread to others.
+            
+            <br><br><b>Home Remedies:</b>
+            <br>Soak the infected area in warm water for 15 to 20 minutes.
+            <br>Scrub the area gently with a washcloth and antibacterial soap.
+            <br>Apply antibiotic ointments.
+            <br>Cover the area with gauze or a loose plastic bandage, if possible.
+            
+            <br><br><b>Prevention:</b>
+            <br>Appropriate personal hygiene and frequent body and hair washing with soap and clean, running water is important to help prevent impetigo. You should wash the clothes, linens, and towels of anyone who has impetigo every day. These items should not be shared with anyone else.</a></li>
+      </ul>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="category-btn-category dropdown-button"
+    onclick="toggleDropdown(this)"
+  >
+    <img
+      class="category-img"
+      src="https://thumbs.dreamstime.com/b/one-finger-virus-corona-cell-mascot-cartoon-character-style-vector-illustration-175495427.jpg"
+    />
+    <div class="category-info" style="padding-left: 35px">
+      <h5 class="category-title" style="text-align: center">Covid</h5>
+      <ul class="dropdown-content dropdown-content-1">
+        <li><a href="#"><b>About the disease:</b>
+          <br>Coronavirus disease 2019 (COVID-19) is a contagious disease caused by a virus, the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). The first known case was identified in Wuhan, China, in December 2019.[5] The disease quickly spread worldwide, resulting in the COVID-19 pandemic.
+            
+          <br><br><b>Home Remedies:</b>
+          <br>Getting plenty of rest
+          <br>Remaining hydrated
+          <br>Taking over-the-counter (OTC) medications, such as acetaminophen
+          <br>Eat nutritious meals
+          <br>Monitor oxygen levels
+            
+          <br><br><b>Prevention:</b>
+          <br>Wear a face mask
+            get vaccinated
+            keep your hands clean and sanitized</a></li>
+      </ul>
+    </div>
+  </button>
+
+  
+
+  <script>
+    function toggleDropdown(button) {
+      const dropdownContent1 = button.querySelector(".dropdown-content-1");
+      const dropdownContent2 = button.querySelector(".dropdown-content-2");
+      const predictionBtn = document.querySelector(".prediction-button");
+
+      if (button.classList.contains("open")) {
+        button.classList.remove("open");
+        dropdownContent1.style.display = "none";
+        dropdownContent2.style.display = "none";
+        predictionBtn.style.marginTop = "60px";
+      } else {
+        button.classList.add("open");
+        dropdownContent1.style.display = "block";
+        dropdownContent2.style.display = "block";
+        predictionBtn.style.marginTop = "0";
+      }
+    }
+  </script>
+
+  {% endblock %}
+</body>

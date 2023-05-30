@@ -1,0 +1,137 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+<style>
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+/* Rounded border */
+hr.rounded {
+  border-top: 8px solid lightblue;
+  border-radius: 5px;
+}
+
+.prjdiv:hover{
+  transform: translateY(-10px)
+}
+
+.container1 {
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.card {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card:hover {
+  background-color: #eee;
+  transform: scale(1.1);
+  z-index: -0.1;
+}
+
+
+.card h3 {
+  font-weight: bold;
+  font-size: 35px;
+  color: #16A085;
+}
+
+.card h4 {
+  font-weight: bold;
+  color: #16A085;
+}
+
+.card p {
+  color: black;
+}
+</style>
+
+<div class="ad-home-bg" style="padding:30px;height">
+<div class="container-fluid" style="margin-top:8%;width:100%;">
+  <div class="container-fluid">
+    
+
+    <div class="">
+      <div class="banner text-center">
+        <h1 align="center" style="font-weight:bold;font-family:roman; margin-top:-6%;">ADMIN DASHBOARD</h1>
+        <img
+          class="banner-img"
+          src="{% static 'img/user_dbb.jpeg' %}"
+          alt=""
+          style="width: 60%; height:200px; border: none;"
+        />
+      </div>
+    </div>
+  </div>
+    <hr class="rounded" />
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <a href="{% url 'view_doctor' %}">
+        <div class="card">
+          <h3>{{doc}}</h3>
+          <h4>Total Doctors</h4>
+          <p>All access are given.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="{% url 'view_patient' %}">
+        <div class="card">
+          <h3>{{pat}}</h3>
+          <h4>Total Users</h4>
+          <p>All access are given.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="{% url 'view_feedback' %}">
+        <div class="card">
+          <h3>{{feed}}</h3>
+          <h4>Total Feedback</h4>
+          <p>All access are given.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+		<a href="{% url 'view_search_pat' %}">
+		  <div class="card">
+			<h3>{{dis}}</h3>
+			<h4>Searched Quantity</h4>
+			<p>All access are given.</p>
+		</div>
+	</a>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

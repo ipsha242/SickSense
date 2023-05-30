@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+	<!-- register -->
+{% ifequal error "create" %}
+<script>
+    alert('Add a new Doctor Successfully');
+    window.location="{% url 'view_doctor' %}";
+</script>
+{% endifequal %}
+
+
+	<section class="logins py-5">
+		<div class="doc-bg" style="background-image: url(static/img/pat-bg.jpeg);margin-top:-7%;>
+			width: 70%;
+			height: 130vh;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;margin-top:-8px;">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="title-section mb-md-5 mb-4">
+				<h6 class="w3ls-title-sub"></h6>
+				<h1 class="heading" style="margin-top:-1%;margin-bottom:-5%; font-size:2rem;"><span> Add</span> doctors </h1>
+			</div>
+			<div class="login px-sm-12" style="width:70%;margin-left:15%;margin-bottom:-5%;
+			background:#eee;padding:40px;border-radius:8px;box-shadow: 0px 30px 30px -30px rgba(71, 92, 92, 0.623);">
+				<form action="{% if doctor %}/change_doctor/{{doctor.id}}/{% else %}/add_doctor{% endif %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% if not doctor %}
+					<div class="form-group row">
+						<div class="col-md-6">
+						<label>First Name</label>
+						<input type="text" class="form-control" name="first_name" placeholder="First Name" required="">
+						</div>
+						<div class="col-md-6">
+						<label>Last Name</label>
+						<input type="text" class="form-control" name="last_name" placeholder="Last Name" required=""><br>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6">
+						<label>Username</label>
+						<input type="text" class="form-control" name="username" placeholder="Username" required="">
+						</div>
+						<div class="col-md-6">
+						<label>ID</label>
+						<input type="password" class="form-control" name="password" placeholder="Password" required=""><br>
+						</div>
+					</div>
+					{% endif %}
+					<div class="form-group row">
+						<div class="col-md-6">
+						<label>Email</label>
+						<input type="email" class="form-control" name="email" placeholder="Enter Email" required="" value="{{doctor.user.email}}" {% if doctor %}readonly{% endif %}>
+						</div>
+						<div class="col-md-6">
+						<label>Contact</label>
+						<input type="text" class="form-control" name="contact" placeholder="Enter Contact" required="" value="{{doctor.contact}}"><br>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6">
+						<label class="mb-2">Chamber</label>
+						<input type="text" class="form-control" name="address" placeholder="Enter Address" required="" value="{{doctor.address}}">
+						</div>
+						<div class="col-md-6">
+						<label>Image</label>
+						<input type="file" class="form-control" name="image"><br>
+						{% if doctor %}<span>{{doctor.image.url}}</span>{% endif %}
+						</div>
+
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+						<label>Specialisation</label>
+							<input class="form-control" name="category" placeholder="Specialist" value="{{doctor.category}}"><br>
+						</div>
+
+					</div>
+					<div class="form-group row">
+						<div class="col-md-6">
+						<label>Experience</label>
+							<input class="form-control" name="experience" placeholder="Experience in Years" value="{{doctor.experience}}">
+						</div>
+						<div class="col-md-6">
+							<label>Fees</label>
+							<input class="form-control" name="fees" placeholder="Fees" value="{{doctor.fees}}">
+						</div>
+					</div>
+					<button type="submit" class="doc-btn" style="margin-left:40%;">Register Doctor</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- //register -->
+
+{% endblock %}

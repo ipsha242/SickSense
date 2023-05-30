@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+{% ifequal terror "create" %}
+<script>
+    alert('Send Feedback Successfully');
+    window.location="{% url 'sent_feedback' %}";
+</script>
+{% endifequal %}
+
+	<section class="logins py-5">
+		<div class="feedback-bg" style="background-image: linear-gradient(rgba(49, 177, 136, 0.521), rgba(108, 108, 116, 0.432));margin-top:-10%;width:100%;height:130vh;">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="title-section mb-md-5 mb-4">
+				<h1 class="heading" style="font-size:2rem;margin-top:10%;">Send us your feedback!</h1>
+			</div>
+			<div class="login px-sm-12" style="width:70%;margin-left:15%;margin-top:-3%;background:#eee;padding:30px;border-radius:8px;box-shadow: 0px 30px 30px -30px rgba(71, 92, 92, 0.466);">
+				<form action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group row">
+						<div class="col-md-12">
+					    <label>Username</label>
+						<input type="text" class="form-control" name="uname" value="{{request.user.username}}" required="" readonly><br>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-12">
+						<label>Your Feedback</label>
+						<textarea class="form-control" style="height:130px;" name="msg" placeholder="Write Messages" required="">
+                        </textarea>
+                        </div>
+					</div>
+					<button type="submit" class="test-btn" style="margin-left:40%;">Send Feedback</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</section>
+
+{% endblock %}

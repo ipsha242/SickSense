@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .div1{
+    color: #444;
+    }
+    .div2{
+    color: #018675;
+    }
+</style>
+<div class="container-profile" style="background-image: linear-gradient(rgba(113, 194, 164, 0.329), rgba(60, 70, 88, 0.432)), url(static/img/2345aaa.jpeg);"><br>
+   <h1 class="heading" style="margin-top:3%;margin-bottom:6%; font-size: 3rem;"> <span> My </span> Profile </h1>
+   <div class="container-pro">
+
+       <div align="left" class="container-fluid" style="width:100%;margin-bottom:6%;">
+           <img src="static/img/user-12.jpg"></img>
+        <hr><div class="row" style="margin-left:10%;" >
+        <div class="col-md-6 div2">
+            <strong>Full Name</strong>
+        </div>
+        <div class="col-md-6 div1">
+            <i>{{pro.user.first_name}} {{pro.user.last_name}}</i>
+        </div>
+    </div><hr>
+
+    <div class="row" style="margin-left:10%;">
+        <div class="col-md-6 div2">
+            <strong>Email Id </strong>
+        </div>
+        <div class="col-md-6 div1">
+            <i>{{pro.user.email}}</i>
+        </div>
+    </div><hr>
+
+    
+
+    {% ifnotequal error "pat" %}
+    <div class="row" style="margin-left:10%;">
+        <div class="col-md-6 div2">
+            <strong>Specialist </strong>
+        </div>
+        <div class="col-md-6 div1">
+            <i>{{pro.category}}</i>
+        </div>
+    </div><hr>
+    {% endifnotequal %}
+    <div class="login px-sm-12" style="width:100%">
+    <a href="{% url 'edit_profile' %}">
+        <button class="test-btn" style="margin-left:23%; align-item:center;">Update Your Profile</button>
+    </a>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

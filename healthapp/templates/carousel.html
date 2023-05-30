@@ -1,0 +1,893 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/3.0.0/flickity.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+
+<div class="hero-slider" data-flickity='{"autoPlay": true, "wrapAround": true, "pauseAutoPlayOnHover": false}'  id="home">
+  <div class="carousel-cell" style="background-image: url(static/img/new3.jpg);">
+      <div class="overlay"></div>
+      <div class="inner">
+          <h2 class="title">We are an AI based <br>Prediction sytem</h2>
+          <h3 class="subtitle">SickSense.</h3>
+      </div>
+  </div>
+
+  <div class="carousel-cell" style="background-image: url(static/img/new2.jpg);">
+      <div class="overlay"></div>
+      <div class="inner">
+          <h2 class="title">Get In Touch with <br>World Class<br> Doctors</h2>
+          <h3 class="subtitle">best surgeons in your locality</h3>
+      </div>
+  </div>
+
+  <div class="carousel-cell" style="background-image: url(static/img/new1.jpg);">
+      <div class="overlay"></div>
+      <div class="inner">
+          <h2 class="title">SickSense takes care of <br>your healthy life</h2>
+          <h3 class="subtitle">know more about us</h3>
+      </div>
+  </div>
+</div>
+
+
+
+  <main id="main">
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+<!-- ======= Icon Section ======= -->
+
+
+    <script src="https://kit.fontawesome.com/ea2693c804.js" crossorigin="anonymous"></script>
+
+
+  <style>
+    .icons-container {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        padding: 50px;
+        margin-top: -60px;
+    }
+    
+    .icons-container .icons {
+        border: 1px solid #d5e1d5;
+        background: #d5e1d5;
+        box-shadow: var(--box-shadow);
+        border-radius: .5rem;
+        text-align: center;
+        padding: 20px 10px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+    
+    .icons-container .icons:hover {
+        transform: scale(1.1);
+        z-index: -0.1;
+    }
+    
+    .icons-container .icons i {
+        font-size: 3rem;
+        color: var(--green);
+        padding-bottom: .7rem;
+        text-shadow: 1px 1px #8da1a1;
+    }
+    
+    
+    .icons-container .icons h3 {
+        font-size: 3.5rem;
+        color: var(--black);
+        padding-bottom: .5rem 0;
+        text-shadow: 2.5px 3px #928f8f;
+    }
+    
+    .icons-container .icons p {
+        font-size: 1rem;
+        color: var(--light-color);
+    
+    }
+    
+    .icons-container .icons span.num {
+        font-size: 3rem;
+        color: var(--black);
+        padding-bottom: .5rem 0;
+        text-shadow: 2.5px 3px #928f8f;
+        font-weight: bold;
+    }
+    
+    </style>
+
+    <script>
+      var count = document.getElementsByClassName("num");
+var inc = [];
+function intervalFunc() {
+  for (let i = 0; i < count.length; i++) {
+    inc.push(1);
+    if (inc[i] != count[i].getAttribute("data-val")) {
+      inc[i]++;
+    }
+    count[i].innerHTML = inc[i];
+  }
+}
+
+var main = document.getElementById("main");
+window.onscroll = function () {
+  var timer = setInterval(() => {
+    var topElem = main.offsetTop;
+    var btmElem = main.offsetTop + main.clientHeight;
+    var topScreen = window.pageYOffset;
+    var btmScreen = window.pageYOffset + window.innerHeight;
+    if (btmScreen > topElem && topScreen < btmElem) {
+      intervalFunc();
+    }
+    else {
+      clearInterval(timer);
+      for (let i = 0; i < count.length; i++) {
+        count[i].innerHTML = 0;
+        inc = [];
+      }
+    }
+
+  }, 200);
+
+};
+    </script>
+
+
+    <section class="icons-container" id="main">
+      <div class="icons"> <i class="fa-solid fa-viruses"></i><br>
+          <span class="num" data-val="200">000</span>
+          <p>disease prediction</p>
+      </div>
+      <div class="icons"> <i class="fas fa-user-md"></i><br>
+          <span class="num" data-val="150">000</span>
+          <p>doctors at work</p>
+      </div>
+
+      <div class="icons"> <i class="fa-solid fa-users"></i><br>
+          <span class="num" data-val="120">000</span>
+          <p>Satisfied Patients</p>
+      </div>
+      <div class="icons"> <i class="fa-solid fa-prescription-bottle-medical"></i><br>
+          <span class="num" data-val="100">000</span>
+          <p>Remedies available</p>
+      </div>
+  </section> <!-- End Counts Section --><br><br><br>
+
+
+  <!-- ======= About Section ======= -->
+  <style>
+
+    .about{
+      background: #f3f3f3;
+      margin-top: -50px;
+    }
+    .about .row {
+      display: flex;
+      align-items: normal;
+      flex-wrap: wrap;
+      padding: 80px 30px;
+      background:
+  }
+  
+  .about .row .image {
+      flex: 1 1 45rem;
+  }
+  
+  .about .row .image img {
+      width: 100%;
+      margin-top: 50px;
+      margin-left: -8%;
+  }
+  
+  .about .row .content {
+      flex: 1 1 41.5rem;
+      margin-left:-6%;
+  }
+  
+  .about .row .content h3 {
+      color: var(--black);
+      text-shadow: 2px 2px #928f8f;
+      font-weight: bold;
+      font-size: 1.7rem;
+      line-height: 1.8;
+      margin-left:30%;
+      width: 100%;
+  }
+  
+  .about .row .content p {
+      color: var(--light-color);
+      padding: 1rem 0;
+      font-size: 1rem;
+      margin-left:30%;
+      line-height: 1.8;
+  
+  }
+  </style>
+  
+      <section class="about" id="about">
+  
+        <h1 class="heading" style="font-size:3rem;"> <span> about </span> us </h1>
+        <div class="row">
+            <div class="content">
+                <h3>we take care of your healthy life</h3>
+                <p>Our website SickSense is an online platform that provides a disease prediction system 
+                  along with doctor's appointments. We have combined healthcare and cutting-edge technology to 
+                  create our prediction system. A user can easily log in or signup and then enter their symptoms, 
+                  our website will diagnose them accordingly, 
+                  they are then provided with doctor's contacts and can schedule an appointment with them. </p>
+                <p> SickSense aims to provide an accurate diagnosis of a disease. Our objective is to make healthcare more accessible, time-saving, and convenient. Our website also has a section for home remedies where a few safe and basic remedies are present for every disease. We have recruited expert doctors with immense experience in their domains to treat their patients accordingly. We are also constantly adding new features to improve our website and 
+                  make it more robust. Our goal is to provide the best possible healthcare solutions and disease 
+                  diagnosis online.</p><br>
+  
+            </div>
+            <div class="image">
+                <img src="static/img/about_us.gif" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= Services Section ======= -->
+
+<style> 
+.box-container .icons p {
+  color: var(--light-color);
+  font-size: 1.7rem;
+
+}
+
+.services .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 3rem;
+  text-align: center;
+  transition: all ease-in-out 0.3s;
+  padding: 15px 5px;
+  align-items: center;
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
+.services .box-container .service-btn {
+  background: #d5e1d5;
+  border-radius: 0.5rem;
+  box-shadow: #717776;
+  border: 1px solid #d5e1d5;
+  padding: 2rem;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+
+.services .box-container .service-btn i {
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  color: var(--green);
+  font-size: 4rem;
+  padding: .5rem;
+  transition: all 0.3s ease-in-out 0;
+  border-radius: 5px;
+}
+
+.services .box-container .service-btn h3 {
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight:bold;
+  padding: 1rem 0;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+
+.services .box-container .service-btn p {
+  color: var(--light-color);
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.services .box-container .service-btn:hover {
+  background: #90c090;
+  transform: scale(1.1);
+  z-index: -0.1;
+}
+
+.services .box-container .service-btn:hover i {
+  color: #5e5858;
+}
+
+.services .box-container .service-btn:hover h3,
+.services .box-container .service-btn:hover p {
+  color: #eee;
+}
+</style>
+
+
+
+
+    <section class="services" id="services">
+        <h1 class="heading" style="font-size:3rem;">  <span>our </span>services </h1><br>
+        <div class="box-container">
+            <a href="#" class="service-btn">
+                <i class="fa-solid fa-vial-circle-check"></i>
+                <h3>Disease Prediction</h3>
+                <p>Get near accurate diagnosis results through our prediction system.</p>
+            </a>
+
+            <a href="{% url 'view_pat_doctors' %}" class="service-btn">
+                <i class="fas fa-user-md"></i>
+                <h3>Doctor's List</h3>
+                <p>Our website connects you with world class doctors.</p>
+            </a>
+
+            <a href="{% url 'remedies' %}" class="service-btn">
+                <i class="fa-solid fa-pills"></i>
+                <h3>Remedies</h3>
+                <p>Our website contains a page solely providing numerous home remedies for various ailments.</p>
+            </a>
+
+            <a href="{% url 'donator_blood' %}" class="service-btn">
+                <i class="fa-solid fa-droplet"></i>
+                <h3>Blood Donation</h3>
+                <p>Apply for donor incase of blood transfusion or donation through our website.</p>
+            </a>
+
+        </div>
+    </section><!-- End Services Section -->
+
+   
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h1 class="heading" style="font-size:3rem;"> <span>Frequently</span> asked questions </h1>
+      
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1"> How do I schedule an appointment? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                  To schedule an appointment, go to the Doctor's list page and select the 'book appointment option' next to the doctor you want to schedule an appointment with.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">What are your operating hours and contact information?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Our services available 24x7 and the time for booking appointments is from 8am to 7pm.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed"> Can I access my medical records online?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                 Patient records can be accessed online by visiting the user page and checking the user history. 
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed"> What are the benefits that I can get by booking appointments through SickSense? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  By booking appointments through SickSense, you can avail 30% off on the first three appointments with a free 7 day follow up.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">How can I provide feedback or make a complaint about my experience? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  To register a complaint visit the complaint and feedback section.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <!--<section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <img src="{% static 'img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
+                  <h3>Saul Goodman</h3>
+                  <h4>Ceo &amp; Founder</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <img src="{% static 'img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="">
+                  <h3>Sara Wilsson</h3>
+                  <h4>Designer</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <img src="{% static 'img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
+                  <h3>Jena Karlis</h3>
+                  <h4>Store Owner</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <img src="{% static 'img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
+                  <h3>Matt Brandon</h3>
+                  <h4>Freelancer</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <img src="{% static 'img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
+                  <h3>John Larson</h3>
+                  <h4>Entrepreneur</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section>-->
+
+    <style>
+      .testimonial{
+        background: #f3f3f3;
+      }
+      .testimonial .card .image {
+
+        height: 140px;
+        width: 140px;
+        border-radius: 50%;
+        padding: 3px;
+        background: #7ab399;
+    }
+    
+    .testimonial .card .image img {
+    
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #fff;
+    }
+    
+    .swiper {
+        width: 900px;
+    
+    }
+    
+    .swiper-button-next {
+        right: 0;
+        color: #9fa5a4;
+    }
+    
+    .swiper-button-prev {
+        left: 0;
+        color: #9fa5a4;
+    }
+    
+    .swiper-pagination-bullet {
+        background-color: #a8a8ac;
+        opacity: 1;
+    }
+    
+    .swiper-pagination-bullet-active {
+        background-color: #696a6d;
+    }
+    
+    .card {
+        position: relative;
+        background: #fff;
+        border-radius: 20px;
+        margin: 20px 0;
+        width: 280px;
+        box-shadow: 3px 3px #d6d4d4;
+        cursor: grab;
+    }
+    
+    .card::before {
+        content: "";
+        position: absolute;
+        height: 40%;
+        width: 100%;
+        background: #7ab399;
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .card .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        position: relative;
+        z-index: 100;
+    }
+    
+    .card .media-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card .media-icon i {
+        color: #fff;
+        opacity: 0.6;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-size: 13px;
+    }
+    
+    .card .media-icon i:hover {
+        opacity: 1;
+    }
+    
+    .card .name-profession {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        color: #000;
+    }
+    
+    .name-profession .name {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    
+    .card .name-profession p {
+        font-size: 12px;
+        font-weight: 500;
+        text-align: center;
+    }
+    
+    .card .rating {
+        display: flex;
+        align-items: center;
+        margin-top: 18px;
+    }
+    
+    .card .rating i {
+        font-size: 18px;
+        margin: 0 2px;
+        color: #018675;
+    }
+  </style>
+
+
+    <section class="testimonial" id="testimonials">
+      <h1 class="heading" style="font-size:3rem;"> our <span> Testimonial </span> </h1>
+      <div class="swiper mySwiper container-test">
+          <div class="swiper-wrapper content">
+
+              <div class="swiper-slide card">
+                  <div class="card-content">
+                      <div class="image">
+                          <img src="static/img/ppl-1.jpeg" alt="">
+                      </div>
+                      <div class="media-icon">
+                          <i class="fa-brands fa-facebook"></i>
+                          <i class="fa-brands fa-twitter"></i>
+                          <i class="fa-brands fa-instagram"></i>
+                      </div>
+                      <div class="name-profession">
+                          <span class="name"> Joe Thomas</span>
+                          <p>"Best services, I got 30% off on booking my first appointment, they even had a 3 day follow up."</p>
+                      </div>
+                      <div class="rating">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="swiper-slide card">
+                  <div class="card-content">
+                      <div class="image">
+                          <img src="static/img/ppl-2.jpg" alt="">
+                      </div>
+                      <div class="media-icon">
+                          <i class="fa-brands fa-facebook"></i>
+                          <i class="fa-brands fa-twitter"></i>
+                          <i class="fa-brands fa-instagram"></i>
+                      </div>
+                      <div class="name-profession">
+                          <span class="name">Alice Lisan</span>
+                          <p>"A very useful and user friendly website.. easy to navigate through it."</p>
+                      </div>
+                      <div class="rating">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-regular fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="swiper-slide card">
+                  <div class="card-content">
+                      <div class="image">
+                          <img src="static/img/ppl-3.jpg" alt="">
+                      </div>
+                      <div class="media-icon">
+                          <i class="fa-brands fa-facebook"></i>
+                          <i class="fa-brands fa-twitter"></i>
+                          <i class="fa-brands fa-instagram"></i>
+                      </div>
+                      <div class="name-profession">
+                          <span class="name">Shanon Williams</span>
+                          <p>"Love the website so much best choice for online diagnosis."</p>
+                      </div>
+                      <div class="rating">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="swiper-slide card">
+                  <div class="card-content">
+                      <div class="image">
+                          <img src="static/img/ppl-4.jpg" alt="">
+                      </div>
+                      <div class="media-icon">
+                          <i class="fa-brands fa-facebook"></i>
+                          <i class="fa-brands fa-twitter"></i>
+                          <i class="fa-brands fa-instagram"></i>
+                      </div>
+                      <div class="name-profession">
+                          <span class="name">Jack collins</span>
+                          <p>" Doctors available could have been more diverse."</p>
+                      </div>
+                      <div class="rating">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-regular fa-star"></i>
+                          <i class="fa-regular fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="swiper-slide card">
+                  <div class="card-content">
+                      <div class="image">
+                          <img src="static/img/ppl-5.jpg" alt="">
+                      </div>
+                      <div class="media-icon">
+                          <i class="fa-brands fa-facebook"></i>
+                          <i class="fa-brands fa-twitter"></i>
+                          <i class="fa-brands fa-instagram"></i>
+                      </div>
+                      <div class="name-profession">
+                          <span class="name">Bella Smith</span>
+                          <p>"I could avail blood transfusion for my nephew through sicksense, truly the best online medical website."</p>
+                      </div>
+                      <div class="rating">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-regular fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="swiper-slide card">
+                  <div class="card-content">
+                      <div class="image">
+                          <img src="static/img/ppl-6.jpeg" alt="">
+                      </div>
+                      <div class="media-icon">
+                          <i class="fa-brands fa-facebook"></i>
+                          <i class="fa-brands fa-twitter"></i>
+                          <i class="fa-brands fa-instagram"></i>
+                      </div>
+                      <div class="name-profession">
+                          <span class="name">Dylan O'Brien</span>
+                          <p>"The prediction system is really accurate, it was quick to diagnose the fact that my sister had covid."</p>
+                      </div>
+                      <div class="rating">
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-solid fa-star"></i>
+                          <i class="fa-regular fa-star"></i>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+      </div>
+
+  </section>
+    
+    <!-- End Testimonials Section -->
+
+   
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h1 class="heading" style="font-size:3rem;"> <span>Contact</span> us </h1>
+          <p>SickSense needs include health promotion, preventive care (immunization, general health screening), treatment of acute and chronic illness, and appropriate referral for more specialized needs where required.</p>
+        </div>
+      </div>
+
+      <div>
+
+        <iframe class="gmap_iframe" style="border:0; width: 100%; height: 350px;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" allowfullscreen src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=amity university kolkata&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+        
+        <!--<iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/dir/22.5738752,88.3720192/amity+university+kolkata+location/@22.5964768,88.359968,12z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x39f882d4ebdbb839:0x9d75c9117c4db1d4!2m2!1d88.4877193!2d22.5959805" frameborder="0" allowfullscreen></iframe>-->
+      </div>
+
+      <div class="container">
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>Amity University Kolkata, Major Arterial Road, Action Area II, Newtown, Kolkata, West Bengal, India, 700135</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>sicksense@gmail.com</p>
+                <p>contact_sicksense@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+1 5589 55488 55</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-4 col-md-6 newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>General health needs include health promotion, preventive care (immunization, general health screening).</p>
+            <form action="" method="post">
+              {% csrf_token %}
+              <input type="email" name="email" placeholder="Enter Your Email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main>
+
+  <!-- ======= Footer ======= -->
+
+
+  
+  
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.hero-slider').flickity({
+        autoPlay: true,
+        wrapAround: true,
+        pauseAutoPlayOnHover: false
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".container-test", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+</script>
+
+
+{% endblock %}

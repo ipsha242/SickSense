@@ -1,0 +1,143 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+	<!-- register -->
+
+<style>
+	.green {
+		background-color: #444;
+	  }
+</style>
+  
+
+
+
+	<section class="logins py-5">
+		<div class="symptoms-bg" style="background-image: url(static/img/we-bg1.jpeg);margin-top:-2%;width: 100%;
+		height: 180h;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;">
+
+		<div class="container py-xl-5 py-lg-3">
+			{% if predictiondata %}
+
+			<div class="title-section" style="background: #fff;
+			width: 100%;
+			max-width: 800px;
+			border-radius: 10px;
+			padding: 50px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 10px;">
+				<h1 class="heading" style="margin-top:1%;font-size: 2.3rem;">Prediction result</h1><br>
+				
+				<div class="results">
+					<div class="content">
+						{% for i, j in predictiondata.items %}
+							{% if forloop.first %}
+								<h5 style="color: var(--black);
+									margin-top: 30px;
+									margin-left: 27%;	
+									font-weight: bold;							
+							        font-size: 1.4rem;
+									line-height: 1.8;
+									width: 100%;">
+									You are Likely Suffering from,
+								</h5>
+								<h4 style="color: var(--green);
+									 font-weight: bold;	
+									 text-align:center;
+									 text-shadow: 2px 2px #8da1a1;
+									 font-size:2.5rem;">" {{ j }} "</h4>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+				</div><br><br><br><br>
+
+				<div class="content">
+					<h5 style="margin-left:15%;">possible Remedies:<a href="{% url 'remedies' %}" class="rest-btn">Remedies</a></h5>
+
+			
+					<h5 style="margin-left:55%;margin-top:-3%;">Consult Doctor:<a href="{% url 'view_pat_doctors' %}" class="rest-btn">Doctor's List</a></h5>
+				</div>
+				
+				
+
+			{% else %}
+
+
+
+			<div class="title-section mb-md-5 mb-4">
+				<h1 class="heading" style="margin-top:1%;font-size: 2.5rem;"> <span>select</span> Symptoms</h1><br>
+				<p style="color:#34495E;margin-bottom:-20px; font-weight:bold;"> *Select atleast 3 Symptoms for more Accurate Results <p>
+			</div>
+			<div class="login px-sm-12" style="width:100%">
+				<form action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group row" style="">
+
+						{% for i in alldisease %}
+
+						<div class="col-md-3" id="box" style="border:1px solid #018675;padding:10px;margin-bottom:20px;margin-top:20px;margin-right:30px;margin-leftt:20px;
+						background:#eee;width:30%;padding:15px;
+						color:#018675;border-radius:5px;">
+							<input type="checkbox" id="check" name="{{i}}" style="width:30px;height:15px" onclick="changeColor(this)" >
+							<label>{{i}}</label>
+						</div>
+
+						{% endfor %}
+					
+					</div>
+					<button type="submit" id="test-btn" class="test-btn" style="background:#018675; color:#fff;
+					margin-left:45%;font-size:15px;padding:10px 30px;" disabled>Get Results</button>
+				</form>
+			</div>
+			{% endif %}
+		</div>
+	</section>
+	<!-- //register -->
+
+<script>
+
+
+	function changeColor(checkbox) {
+    var box = checkbox.parentElement;
+    if (checkbox.checked) {
+        box.style.backgroundColor = "#018675";
+        box.style.color = "#fff";
+
+        var checkboxes = document.getElementsByName(checkbox.name);
+        var checkedCount = 0;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedCount++;
+            }
+        }
+
+        if (checkedCount > 3) {
+            checkbox.checked = false;
+            box.style.backgroundColor = "#eee";
+            box.style.color = "#018675";
+            alert("You can only select up to 3 checkboxes.");
+        }
+    } else {
+        box.style.backgroundColor = "#eee";
+        box.style.color = "#018675";
+    }
+
+    var checkedBoxes = document.querySelectorAll('input[name="' + checkbox.name + '"]:checked');
+    var testBtn = document.getElementById("test-btn");
+    if (checkedBoxes.length >= 1 && checkedBoxes.length <= 3) {
+        testBtn.disabled = false;
+    } else {
+        testBtn.disabled = true;
+    }
+	} 
+
+	  
+	
+</script>
+
+{% endblock %}

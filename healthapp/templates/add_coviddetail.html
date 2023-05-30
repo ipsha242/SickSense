@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+	<!-- register -->
+
+	<style>
+		.green {
+			background-color: #444;
+		  }
+	</style>
+	  
+
+                    
+
+	<section class="logins py-5">
+		<div class="covid-bg" style="background-image: linear-gradient(rgba(149, 197, 197, 0.377), rgba(143, 147, 155, 0.445)),url(static/img/doc-bgg.jpeg);margin-top:-5%;width: 100%;
+		height: 180vh;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;"
+		<div class="container py-xl-5 py-lg-3"><br><br><br>
+			<div class="title-section mb-md-5 mb-4">
+			
+				<h1 class="heading" style="margin-top:20px;font-size: 2.5rem;"> <span>Add</span> Covid details</h1><br>
+			</div>
+			<div class="login px-sm-12" style="width:80%;background-color:#eee;padding:50px;border-radius:6px;margin-left:10%;margin-top:-50px;">
+				<form action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group row">
+							 
+						<div class="col-md-4">
+						<label>Age:</label>
+						<input type="text" class="form-control" name="age"  required="" placeholder="Enter age of patient"><br>
+						</div>
+					<div class="col-md-4">
+						<label>Sex:</label>
+						<input type="text" class="form-control" name="sex"  required="" placeholder="Enter 1 for Male and 2 for Female">
+						</div>
+					<div class="col-md-4">
+						<label>Has the patient been intubed?</label>
+						<input type="text" class="form-control" name="intubed"  required="" placeholder="Enter 1 for Yes and 2 for No">
+						</div>
+					<div class="col-md-4">
+						<label>Does the patient have Pneumonia?</label>
+						<input type="text" class="form-control" name="pneumonia"  required="" placeholder="Enter 1 for Yes and 2 for No">
+						</div>
+					<div class="col-md-4">
+						<label>Does the patient have Diabetes?</label>
+						<input type="text" class="form-control" name="diabetes"  required="" placeholder="Enter 1 for Yes and 2 for No"><br>
+						</div>
+					<div class="col-md-8">
+						<label>Does the patient have Chronic Obstructive Pulmonary Disease(COPD)?</label>
+						<input type="text" class="form-control" name="copd"  required="" placeholder="Enter 1 for Yes and 2 for No"><br>
+						</div>
+					<div class="col-md-4">
+						<label>Does the patient have Asthma?</label>
+						<input type="text" class="form-control" name="asthma"  required="" placeholder="Enter 1 for Yes and 2 for No">
+						</div>
+					<div class="col-md-4">
+						<label>Does the patient have Hypertension?</label>
+						<input type="text" class="form-control" name="hypertension"  required="" placeholder="Enter 1 for Yes and 2 for No">
+						</div>
+					<div class="col-md-6">
+						<label>Does the patient have Cardiovascular Diseases?</label>
+						<input type="text" class="form-control" name="cardiovascular"  required="" placeholder="Enter 1 for Yes and 2 for No"><br>
+						</div>
+					<div class="col-md-4">
+						<label>Does the patient have Obesity?</label>
+						<input type="text" class="form-control" name="obesity"  required="" placeholder="Enter 1 for Yes and 2 for No">
+						</div>
+					<div class="col-md-6">
+						<label>Does the patient have Renal Chronic Diseases?</label>
+						<input type="text" class="form-control" name="renal_chronic"  required="" placeholder="Enter 1 for Yes and 2 for No"><br>
+						</div>
+					<div class="col-md-4">
+						<label>Does the patient take Tobacco?</label>
+						<input type="text" class="form-control" name="tobacco"  required="" placeholder="Enter 1 for Yes and 2 for No">
+						</div>
+					<div class="col-md-8">
+						<label>Has the patient come in contact with any Covid-19 infected person?</label>
+						<input type="text" class="form-control" name="contact_other_covid"  required="" placeholder="Enter 1 for Yes and 2 for No"><br>
+						</div>
+					<div class="col-md-6">
+							<label>Has the patient been admitted in ICU??</label>
+							<input type="text" class="form-control" name="icu"  required="" placeholder="Enter 1 for Yes and 2 for No">
+							</div>
+
+					</div>
+					<button type="submit" class="doc-btn" style="margin-left:45%;">Predict</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</section>
+	
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+  <!-- register -->
+  {% ifequal error "create" %}
+  <script>
+    alert('Registration Successfull');
+    window.location="{% url 'login' %}";
+  </script>
+  {% endifequal %}
+
+  <style>
+    .form-group.row {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      border-radius: 0;
+    }
+
+    .btn.btn-primary.submit {
+      border-radius: 0;
+    }
+
+    .text-center mt-5 a {
+      color: #018675;
+    }
+
+    .log-container {
+      width: 100%;
+      height: 130vh;
+      margin-top:-20px;
+      background-image: linear-gradient(
+          rgba(30, 107, 83, 0.363),
+          rgba(109, 109, 116, 0.342)
+        ),
+        url(static/img/login.jpg);
+      background-position: center;
+      background-size: cover;
+      position: relative;
+    }
+
+    .form-box {
+      width: 50%; /* Updated width to 70% */
+      max-width: 450px;
+      height: 45rem; 
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 30px 40px 50px;
+      text-align: center;
+      margin-top: -20px;
+      border-radius: 2px;
+    }
+
+    .form-box h1 {
+      font-size: 30px;
+      margin-bottom: 60px;
+      color: #018675;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .form-box h1::after {
+      content: "";
+      width: 30px;
+      height: 4px;
+      border-radius: 3px;
+      background: var(--green);
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .form-control {
+      background: #eaeaea;
+      margin: 15px 0;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      max-height: 50px;
+      transition: max-height 0.5s;
+      overflow: hidden;
+      width: 200%;
+    }
+
+    input {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      padding: 12px 15px;
+    }
+
+    .form-control i {
+      margin-left: 15px;
+      color: #018675;
+      font-size: 11px;
+    }
+
+    form p {
+      text-align: left;
+      font-size: 13px;
+    }
+
+    form p a {
+      text-decoration: none;
+      color: var(--green);
+    }
+
+    .btn-field {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      
+    }
+
+    .btn-field signupBtn {
+      flex-basis: 48%;
+      background: #018675;
+      color: #fff;
+      height: 40px;
+      border-radius: 20px;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+      transition: background 1s;
+    }
+
+    .input-group {
+      height: 280px;
+    }
+  </style>
+</head>
+<body>
+  <section class="logins py-5">
+    <div class="log-container">
+      <div class="form-box">
+        <h1 id="title">Sign Up</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label style="margin-right:70px;">Full Name</label>
+              <input type="text" class="form-control" name="fname" placeholder="First Name" required="" >
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label style="margin-right:70px;">Username</label>
+              <input type="text" class="form-control" name="uname" placeholder="Username" required="">
+            </div>
+			<div class="form-group row">
+				<div class="col-md-6">
+				  <label style="margin-right:90px;">Email</label>
+				  <input type="email" class="form-control" name="email" placeholder="Enter Email" required="">
+				</div>
+			</div>
+            <div class="col-md-6">
+              <label style="margin-right:70px;">Password</label>
+              <input type="password" class="form-control" name="pwd" placeholder="Password" required="">
+            </div>
+          </div>
+          <button type="submit" class="rest-btn" style="margin-left:-20px;">Register</button>
+          <p class="text-center mt-5">
+            <a href="#">By clicking Register, I agree to your terms</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- //register -->
+
+{% endblock %}

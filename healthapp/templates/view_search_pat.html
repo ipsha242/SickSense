@@ -1,0 +1,100 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+<div class="history-bg" style="background-image:url(static/img/we-bg.jpeg);margin-top:-20px; width:100%;height:180vh;
+background-size: cover;
+background-position: center;">
+  <div class="container-fluid" style="width:90%;margin-top:8%;background-color:transperant;">
+                    <div class="container-fluid"><br>
+                      <h1 class="heading" style="background:transperant;margin-top:10px;margin-bottom:1%;font-size:2rem;"><span>patient</span> Records </h1>
+                         </div>
+                                <table id="example" class="display" style="width: 100%;
+                                background-color: #FFFFFF;
+                                border-collapse: collapse;
+                                border-width: 1px;
+                                border-color: #94FFBF;
+                                border-style: solid;
+                                color: #000000;box-shadow: 0px 30px 30px -30px rgba(71, 92, 92, 0.466);">
+                                  <thead style="background-color:#5EAB8D ;">
+                                    <tr style="border-width: 1px;
+                                    border-color: #018675;
+                                    border-style: solid;
+                                    padding: 13px; color:#fff">
+                                      <th style="border-width: 1px;
+                                      border-color: #94FFBF;
+                                      border-style: solid;
+                                      padding: 13px;text-align:center;">id</th>
+                                      {% if request.user.patient_set.all.0 %}
+                                      <th style="border-width: 1px;
+                                      border-color: #94FFBF;
+                                      border-style: solid;
+                                      padding: 13px;text-align:center;">Date</th>
+                                      {% else %}
+                                      <th style="border-width: 1px;
+                                      border-color: #94FFBF;
+                                      border-style: solid;
+                                      padding: 13px;text-align:center;">Patient Name</th>
+                                      {% endif %}
+                                      <th style="border-width: 1px;
+                                      border-color: #94FFBF;
+                                      border-style: solid;
+                                      padding: 13px;text-align:center;">Prediction For</th>
+                                      <th style="border-width: 1px;
+                                      border-color: #94FFBF;
+                                      border-style: solid;
+                                      padding: 13px;text-align:center;">Symptoms Entered</th>
+                                      <th style="border-width: 1px;
+                                      border-color: #94FFBF;
+                                      border-style: solid;
+                                      padding: 13px;text-align:center;">Result</th>
+                                      <th style="border-width: 1px;
+                                      border-color: #94FFBF;
+                                      border-style: solid;
+                                      padding: 13px;text-align:center;">Delete</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in data %}
+                                <tr>
+                                  <td style="color:#444;border-width: 1px;
+                                  border-color: #94FFBF;
+                                  border-style: solid;">{{forloop.counter}}</td>
+                                  {% if request.user.patient_set.all.0 %}
+                                  <td style="color:#444;border-width: 1px;
+                                    border-color: #94FFBF;
+                                    border-style: solid;background:#EAFAF1">{{i.created}}</td>
+                                  {% else %}
+                                  <td style="color:#444;border-width: 1px;
+                                  border-color: #94FFBF;
+                                  border-style: solid;">{{i.patient.user.first_name}} {{i.patient.user.last_name}}</td>
+                                  {% endif %}
+                                  <td style="color:#444;border-width: 1px;
+                                  border-color: #94FFBF;
+                                  border-style: solid;">{{i.predict_for}}</td>
+                                  <td style="color:#444;border-width: 1px;
+                                  border-color: #94FFBF;
+                                  border-style: solid;background:#EAFAF1;">{{i.values_list}}</td>
+                                  <td>{% if i.result == "0" %}
+                                    <h5 style="color:green">Healthy</h5>
+                                    {% else %}
+                                    <h5 style="color:#B64747;font-size:15px;">{{i.result}}</h5>
+                                {% endif %}
+                                </td>
+                                  
+                                  <td style="width:100px;border-width: 1px;
+                                  border-color: #94FFBF;
+                                  border-style: solid;">
+
+
+                                      <a href="/delete_searched/{{i.id}}" ><button class="btn btn-outline-secondary" style="margin-left:3px" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button></a></td>
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+  </div>
+               
+{% endblock %}
